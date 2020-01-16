@@ -1,5 +1,9 @@
 /* Nav bar with heading*/
-h1{
+header{
+    
+}
+h1 {
+    align-content: center;
     text-align: center;
     color: white;
     background-color: gray;

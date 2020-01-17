@@ -18,7 +18,7 @@ $.ajax({
 //name , temp , windspeed , humidity
 $('.cityName').html('<h3>').html('<h3>' + response.name + '</h3>');
 $('.temp').html('<h6>').html('<h6>' + response.main.temp + '</h6>');
-$('.humidity').html('<h6>').html('<h6>' + response.main.humidity + '</h6>');
+$('.humidity').html('<h6>').html('<h6>' + response.main.humidity + ' %</h6>');
 $('.wind').html('<h6>').html('<h6>' + response.wind.speed + ' MPH</h6>');
 
 

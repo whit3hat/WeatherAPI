@@ -1,5 +1,6 @@
 //variables
 //user input on search to get weather
+
 const city = "kansas city";
 
 //API Variables
@@ -15,7 +16,7 @@ $.ajax({
     //log the queryURL
     console.log(response);
 
-//display forcast
+//display forcast : transfer content to HTML
 
 //store cities
 });

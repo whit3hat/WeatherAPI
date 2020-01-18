@@ -30,7 +30,7 @@ $('#button-addon1').on('click' , function(event) {
     //prevent the button from trying to submit the form
     event.preventDefault();
     //store city name
-    const city = 'austin';
+    const city = $('.form-control').val().trim();
     citySearch(city);
 });
 //store cities

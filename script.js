@@ -21,8 +21,20 @@ function citySearch(city) {
     $('.temp').html('<h6>').html('<h6>' + response.main.temp + ' F</h6>');
     $('.humidity').html('<h6>').html('<h6>' + response.main.humidity + ' %</h6>');
     $('.wind').html('<h6>').html('<h6>' + response.wind.speed + ' MPH</h6>');
+    
     });
-}
+    //add buttons to side
+
+    //call for the 5 day forcast data 
+    $.ajax({
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&units=imperial&mode=json&appid=" + apiKey,
+        method: "GET"
+    })
+    .then (function (forcast){
+        //log the forcast data
+        console.log(forcast);
+    });
+};
 
 //event handler for user clicking the search button
 $('#button-addon1').on('click' , function(event) {
@@ -30,13 +42,12 @@ $('#button-addon1').on('click' , function(event) {
     event.preventDefault();
     //store city name
     const city = $('.form-control').val().trim();
+    //store cities
     cities.push(city);
     citySearch(city);
     //logging Cities Array storing previous searches
     console.log(cities);
 });
-//store cities
 
-//add buttons to side
 
-//use local storage to get cities and store ones searched
+

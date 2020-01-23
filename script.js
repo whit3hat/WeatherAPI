@@ -1,6 +1,3 @@
-//previously searched cities
-const cities = [];
-
 //API Variables
 function citySearch(city) {
     const apiKey = "a22da7765e1c4b4916ddcc298644a47e";
@@ -23,10 +20,14 @@ function citySearch(city) {
     $('.wind').html('<h6>').html('<h6>' + response.wind.speed + ' MPH</h6>');
     });
 
+    //empty the buttons div prior to running the loop
+    $('.cities').empty();
+
     //add buttons to side for loop
     for (i = 0; i < cities.length; i++){
-        var cityBtn = $('.btn').text(cities[i]);
-        $('.cities').append(cityBtn);
+        var cityBtn = $("<button class='btn'>" + cities[i] + '</button>');
+        //appends cities array button and the div to go to next line
+        $('.cities').append(cityBtn, $('<div class="w-100"></div>'));
     };    
 
 
@@ -48,16 +49,27 @@ function citySearch(city) {
         //temp value to store the forecast data
         const tempForecast = {
             'date' : forecast.list[i].dt_txt,
-           'icon' : forecast.list[i].weather[0].icon,
+            'icon' : forecast.list[i].weather[0].icon,
             'main_temp' : forecast.list[i].main.temp_max,
             'min_temp' : forecast.list[i].main.temp_min};
         
         cityForecast.push(tempForecast);
        //console log of the array for the 5 day
         console.log(cityForecast);
-
-
     }
+
+    function createCard(current_date){
+        var card = $("<div class = 'card'></div>");
+        var img = $("<img class = 'card-img-top' src = 'http://openweathermap.org/img/w/'" + icon + "'.png' alt = ' Card image cap'>");
+        var my_date = $("<h5 class = 'card-title'>" + current_date + "</h5>");
+        $("#five-day").append(card.append(my_date));
+    }
+
+    cityForecast.forEach((dayForecast)=> {
+        
+        var my_date =dayForecast.date;
+        createCard(my_date);
+    });
         
 });       
 };
@@ -75,6 +87,7 @@ $('#button-addon1').on('click' , function(event) {
     console.log(cities);
 });
 
-
+//previously searched cities
+const cities = [];
 
 

@@ -18,6 +18,13 @@ function citySearch(city) {
     $('.temp').html('<h6>').html('<h6>' + response.main.temp + ' F</h6>');
     $('.humidity').html('<h6>').html('<h6>' + response.main.humidity + ' %</h6>');
     $('.wind').html('<h6>').html('<h6>' + response.wind.speed + ' MPH</h6>');
+    
+    //setting to local storage to recall when buttons of previous cities are clicked
+    localStorage.setItem('CityName', response.name);
+    localStorage.setItem('temp', response.main.temp);
+    localStorage.setItem('humidity', response.main.humidity);
+    localStorage.setItem('wind', response.wind.speed);
+
     });
 
     //empty the buttons div prior to running the loop
@@ -30,6 +37,7 @@ function citySearch(city) {
         $('.cities').append(cityBtn, $('<div class="w-100"></div>'));
     };    
 
+    //when button is clicked retrieve previous data
 
     //call for the 5 day forecast data 
     $.ajax({
@@ -56,20 +64,21 @@ function citySearch(city) {
         cityForecast.push(tempForecast);
        //console log of the array for the 5 day
         console.log(cityForecast);
+
     }
 
-    function createCard(current_date){
-        var card = $("<div class = 'card'></div>");
-        var img = $("<img class = 'card-img-top' src = 'http://openweathermap.org/img/w/'" + icon + "'.png' alt = ' Card image cap'>");
-        var my_date = $("<h5 class = 'card-title'>" + current_date + "</h5>");
-        $("#five-day").append(card.append(my_date));
-    }
+    // function createCard(current_date){
+    //     var card = $("<div class = 'card'></div>");
+    //     var img = $("<img class = 'card-img-top' src = 'http://openweathermap.org/img/w/'" + icon + "'.png' alt = ' Card image cap'>");
+    //     var my_date = $("<h5 class = 'card-title'>" + current_date + "</h5>");
+    //     $("#five-day").append(card.append(my_date));
+    // }
 
-    cityForecast.forEach((dayForecast)=> {
+    // cityForecast.forEach((dayForecast)=> {
         
-        var my_date =dayForecast.date;
-        createCard(my_date);
-    });
+    //     var my_date =dayForecast.date;
+    //     createCard(my_date);
+    // });
         
 });       
 };

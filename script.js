@@ -3,6 +3,8 @@ function citySearch(city) {
     const apiKey = "a22da7765e1c4b4916ddcc298644a47e";
     const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&units=imperial&mode=json&appid=" + apiKey;
 
+    $('#five-day-forecast').show();
+
     //ajax to get connection to open weather
     $.ajax({
         url:queryURL,
@@ -52,6 +54,8 @@ function citySearch(city) {
     //array to store city forecast for 5 day
     const cityForecast = [];
 
+    var current_day = 1;
+
     //for loop to get the days forecast from the reponse above
     for (let i = 0; i < forecast.list.length; i+=8){
         //temp value to store the forecast data
@@ -67,14 +71,22 @@ function citySearch(city) {
         console.log('date: ' , tempForecast.date);
         var iconUrl = "http://openweathermap.org/img/w/" + tempForecast.icon + ".png";
 
-        $('.card-title').text(tempForecast.date);
-        $('.card-img-top').attr('src' , iconUrl);
-        $('.card-text').text(tempForecast.main_temp , tempForecast.min_temp);
+        // $('.card-title').text(tempForecast.date);
+        // $('.card-img-top').attr('src' , iconUrl);
+        // $('.card-text').text(tempForecast.main_temp , tempForecast.min_temp);
 
+        current_day.toString();
+
+        $(`.card.day${current_day}`).children('.card-img-top').attr('src' , iconUrl);
+        $(`.card.day${current_day} > .card-body`).children('.card-title').text(tempForecast.date);
+        $(`.card.day${current_day} > .card-body`).children('.card-text').text(tempForecast.main_temp , tempForecast.min_temp);
+    
+        current_day = parseInt(current_day);
+        current_day++;
     }
-
 });       
 };
+$('#five-day-forecast').hide();
  
 //event handler for user clicking the search button
 $('#button-addon1').on('click' , function(event) {

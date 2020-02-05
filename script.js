@@ -64,22 +64,15 @@ function citySearch(city) {
         cityForecast.push(tempForecast);
        //console log of the array for the 5 day
         console.log(cityForecast);
+        console.log('date: ' , tempForecast.date);
+        var iconUrl = "http://openweathermap.org/img/w/" + tempForecast.icon + ".png";
+
+        $('.card-title').text(tempForecast.date);
+        $('.card-img-top').attr('src' , iconUrl);
+        $('.card-text').text(tempForecast.main_temp , tempForecast.min_temp);
 
     }
 
-    // function createCard(current_date){
-    //     var card = $("<div class = 'card'></div>");
-    //     var img = $("<img class = 'card-img-top' src = 'http://openweathermap.org/img/w/'" + icon + "'.png' alt = ' Card image cap'>");
-    //     var my_date = $("<h5 class = 'card-title'>" + current_date + "</h5>");
-    //     $("#five-day").append(card.append(my_date));
-    // }
-
-    // cityForecast.forEach((dayForecast)=> {
-        
-    //     var my_date =dayForecast.date;
-    //     createCard(my_date);
-    // });
-        
 });       
 };
  
